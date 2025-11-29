@@ -1,0 +1,21 @@
+Hound - Information Gathering Report
+------------------------------------
+
+Device Information
+----------------------------
+User Agent: Mozilla/5.0 (X11; Linux x86_64; rv:140.0) Gecko/20100101 Firefox/140.0 
+Platform: Linux x86_64 
+Cookies Enabled: true
+Browser Language: en-US
+Browser Name: Netscape
+Browser CodeName: Mozilla
+RAM: undefined
+CPU Cores: 2
+Screen Width: 1366
+Screen Height: 627
+Local Time: 11:23:04 PM
+RefUrl: 
+OS CPU: Linux x86_64
+-------------------------
+
+User denied the Geolocation permision.

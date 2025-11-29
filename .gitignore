@@ -1,0 +1,16 @@
+# Binaries
+cloudflared
+
+# Logs and Data
+*.log
+*.txt
+!requirements.txt
+!LICENSE
+!README.md
+
+# Generated Files
+index.html
+index.php
+
+# System
+.DS_Store

