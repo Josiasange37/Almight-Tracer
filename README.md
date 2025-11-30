@@ -1,9 +1,9 @@
 <p align="center">
-  <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&pause=1000&color=F7F7F7&background=21212100&center=true&vCenter=true&width=435&lines=Almight+Tracker+v0.4;Advanced+Multi-Template+Tracker;WebRTC+%2B+Fingerprint+%2B+Camera" alt="Typing SVG" />
+  <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&pause=1000&color=F7F7F7&background=21212100&center=true&vCenter=true&width=435&lines=Almight+Tracker+v0.5;11+Phishing+Templates;WebRTC+%2B+Fingerprint+%2B+Camera" alt="Typing SVG" />
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Version-0.4-blue?style=for-the-badge&logo=none" alt="Version">
+  <img src="https://img.shields.io/badge/Version-0.5-blue?style=for-the-badge&logo=none" alt="Version">
   <img src="https://img.shields.io/badge/Status-Active-success?style=for-the-badge&logo=none" alt="Status">
   <img src="https://img.shields.io/badge/License-MIT-orange?style=for-the-badge&logo=none" alt="License">
   <img src="https://img.shields.io/badge/Platform-Linux-lightgrey?style=for-the-badge&logo=linux" alt="Platform">
@@ -25,26 +25,32 @@
 
 ## 🚀 Overview
 
-**Almight Tracker v0.4** is a powerful social engineering and information gathering tool designed for authorized security testing. It features multiple realistic phishing templates with advanced tracking capabilities:
+**Almight Tracker v0.5** is a powerful social engineering and information gathering tool designed for authorized security testing. It features **11 realistic phishing templates** with advanced tracking capabilities:
 
 * **IP Address** (including WebRTC leak detection)
 * **GPS Location** (High-accuracy with altitude/speed)
 * **Device Fingerprint** (Canvas, Hardware, Browser)
 * **Camera/Mic Permissions** with silent photo/video capture
-* **Credential Harvesting** (Google Security template)
+* **Credential Harvesting** (Google Security, Netflix templates)
 * **Persistent User Tracking** (localStorage + cookies)
 
 Upon capturing an IP, the tool automatically performs a **Censys Lookup**, generating direct search links to uncover open ports, services, and potential vulnerabilities.
 
 ## ✨ Key Features
 
-### 🎨 Multiple Phishing Templates
+### 🎨 11 Phishing Templates
 
 * **ChatGPT Interface:** Pixel-perfect dark mode clone with mobile support
 * **Cloudflare Verification:** "Checking your browser" page
 * **Google Login:** Authentic Google sign-in interface
 * **WhatsApp Security Alert:** Official WhatsApp support page design
 * **Google Security Team:** Google support-style credential harvesting
+* **Facebook Security Alert:** 🆕 Official Facebook security notification
+* **Instagram Verification:** 🆕 Meta Verified account verification
+* **Microsoft Security:** 🆕 Microsoft Outlook security alert
+* **Apple ID Verification:** 🆕 Minimalist Apple security page
+* **Netflix Login:** 🆕 Netflix credential capture with dark theme
+* **PayPal Security:** 🆕 PayPal security verification
 
 ### 🕵️‍♂️ Advanced Tracking
 
@@ -95,12 +101,18 @@ chmod +x almight.sh
     ./almight.sh
     ```
 
-2. **Select Template:** Choose from 5 phishing templates:
+2. **Select Template:** Choose from 11 phishing templates:
     * [1] ChatGPT Interface (Default)
     * [2] Cloudflare Verification
     * [3] Google Login
     * [4] WhatsApp Security Alert
     * [5] Google Security Team
+    * [6] Facebook Security Alert 🆕
+    * [7] Instagram Verification 🆕
+    * [8] Microsoft Security 🆕
+    * [9] Apple ID Verification 🆕
+    * [10] Netflix Login 🆕
+    * [11] PayPal Security 🆕
 
 3. **Select Tunnel:** Choose `Y` to use Cloudflared (recommended) for a public HTTPS link.
 
@@ -112,7 +124,7 @@ chmod +x almight.sh
     * GPS coordinates
     * Camera/mic permissions
     * Photos & videos (if granted)
-    * Credentials (Google Security template)
+    * Credentials (Google Security, Netflix)
 
 6. **Exit & Analyze:** Press `Ctrl + C` to stop. The tool will automatically display **Censys search links** for all captured IPs.
 
@@ -135,6 +147,12 @@ chmod +x almight.sh
 | Google Login | ❌ | ✅ | ❌ | ✅ |
 | WhatsApp Security | ❌ | ✅ | ✅ | ✅ |
 | Google Security | ✅ | ✅ | ✅ | ✅ |
+| Facebook Security 🆕 | ❌ | ✅ | ✅ | ✅ |
+| Instagram Verification 🆕 | ❌ | ✅ | ✅ | ✅ |
+| Microsoft Security 🆕 | ❌ | ✅ | ✅ | ✅ |
+| Apple ID Verification 🆕 | ❌ | ✅ | ✅ | ✅ |
+| Netflix Login 🆕 | ✅ | ✅ | ✅ | ✅ |
+| PayPal Security 🆕 | ❌ | ✅ | ✅ | ✅ |
 
 ## 🔧 Technical Details
 
@@ -167,6 +185,7 @@ chmod +x almight.sh
 </p>
 
 **Join our community for:**
+
 * 🚀 Latest updates and new features
 * 💡 Share your ideas and suggestions
 * 🐛 Report bugs and issues
@@ -183,10 +202,23 @@ chmod +x almight.sh
 
 ## 📝 Changelog
 
-### v0.4 (Latest)
+### v0.5 (Latest)
 
-* ✅ Added WhatsApp Security Alert template
+- ✅ Added 6 new phishing templates:
+  * Facebook Security Alert
+  * Instagram Verification
+  * Microsoft Security
+  * Apple ID Verification
+  * Netflix Login (with credential capture)
+  * PayPal Security
+* ✅ All new templates feature permission-gated verification
+* ✅ Mobile-first responsive design for all templates
+* ✅ Authentic branding matching official platforms
+* ✅ Updated to 11 total templates
 
+### v0.4
+
+- ✅ Added WhatsApp Security Alert template
 * ✅ Added Google Security Team template
 * ✅ Implemented silent photo/video capture
 * ✅ Added credential harvesting (Google template)
@@ -197,7 +229,7 @@ chmod +x almight.sh
 
 ### v0.3
 
-* Added ChatGPT, Cloudflare, and Google Login templates
+- Added ChatGPT, Cloudflare, and Google Login templates
 
 * Implemented WebRTC leak detection
 * Added browser fingerprinting

