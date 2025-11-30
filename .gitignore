@@ -1,16 +1,58 @@
-# Binaries
-cloudflared
+# Generated files during testing
+data.txt
+targetreport.txt
+saved.ip.txt
+captured_ips.txt
+test_captured_ips.txt
+ip.txt
 
-# Logs and Data
+# Cloudflared logs
+cf.log
 *.log
-*.txt
-!requirements.txt
-!LICENSE
-!README.md
 
-# Generated Files
+# Generated index.html (created from templates)
 index.html
-index.php
 
-# System
+# Captured media files
+captures/
+*.jpg
+*.jpeg
+*.png
+*.webm
+*.mp4
+
+# PHP session files
+*.sess
+
+# Temporary files
+*.tmp
+*.temp
+~*
+
+# OS files
 .DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Node modules (if any)
+node_modules/
+
+# Environment files
+.env
+.env.local
+
+# Backup files
+*.bak
+*.backup
+
+# Database files
+*.db
+*.sqlite
+*.sqlite3

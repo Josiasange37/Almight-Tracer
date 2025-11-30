@@ -25,28 +25,32 @@
 
 ## 🚀 Overview
 
-**Almight Tracker v0.3** is a powerful social engineering and information gathering tool designed for authorized security testing. It creates a convincing, pixel-perfect replica of the **ChatGPT** interface to gather detailed information about a target device, including:
+**Almight Tracker v0.4** is a powerful social engineering and information gathering tool designed for authorized security testing. It features multiple realistic phishing templates and advanced tracking capabilities:
 
-* **IP Address**
-* **GPS Location** (Latitude/Longitude)
-* **Device Info** (OS, Browser, CPU, RAM)
-* **Network Info** (ISP, Country, Region)
+* **IP Address** (including WebRTC leak detection)
+* **GPS Location** (High-accuracy with altitude/speed)
+* **Device Fingerprint** (Canvas, Hardware, Browser)
+* **Camera/Mic Permissions**
+* **Persistent User Tracking**
 
-Upon capturing an IP, the tool automatically performs a **Censys Lookup**, generating direct search links to uncover open ports, services, and potential vulnerabilities associated with the target's network.
+Upon capturing an IP, the tool automatically performs a **Censys Lookup**, generating direct search links to uncover open ports, services, and potential vulnerabilities.
 
 ## ✨ Key Features
 
-* **🎨 Realistic ChatGPT Interface:** A pixel-perfect clone of the ChatGPT UI (Dark Mode), featuring:
-  * **Mobile-First Design:** Fully responsive sidebar, hamburger menu, and touch-optimized layout.
-  * **Interactive Chat:** Functional "Enter to send", auto-resizing inputs, and dynamic message bubbles.
-  * **Authentic Visuals:** Exact color palette, fonts, and icons used by OpenAI.
-* **🔍 Automatic Censys Integration:**
-  * Automatically captures and saves unique IPs to `captured_ips.txt`.
-  * Generates direct **Censys Search Links** upon exit for immediate reconnaissance.
-* **📍 Precision Tracking:**
-  * Captures high-accuracy GPS coordinates (if permitted by user).
-  * Provides Google Maps and Google Earth links.
-* **🛡️ Secure Tunneling:** Uses `Cloudflared` to generate secure, anonymous HTTPS links (no port forwarding required).
+* **🎨 Multiple Phishing Templates:**
+  * **ChatGPT Interface:** Pixel-perfect dark mode clone with mobile support
+  * **Cloudflare Verification:** "Checking your browser" page
+  * **Google Login:** Authentic Google sign-in interface
+* **🕵️‍♂️ WebRTC Leak Detection:** Captures real IPs even behind VPNs
+* **🆔 Advanced Fingerprinting:**
+  * Canvas fingerprinting
+  * Screen resolution & hardware specs
+  * Timezone & language detection
+* **📸 Camera/Microphone Access:** Requests media permissions (requires user consent)
+* **💾 Persistent Tracking:** Tracks returning users via localStorage + cookies
+* **📍 High-Accuracy GPS:** Captures precise location with altitude & speed
+* **🔍 Automatic Censys Integration:** Generates search links for captured IPs
+* **🛡️ Secure Tunneling:** Uses Cloudflared for anonymous HTTPS links
 
 ## 📦 Installation
 
