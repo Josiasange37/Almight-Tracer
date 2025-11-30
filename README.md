@@ -52,13 +52,13 @@ Upon capturing an IP, the tool automatically performs a **Censys Lookup**, gener
 
 ```bash
 # Clone the repository
-git clone https://github.com/Josiasange37/hound.git
+git clone https://github.com/Josiasange37/Almight-Tracer.git
 
 # Navigate to the directory
-cd hound
+cd Almight-Tracer
 
 # Grant execution permissions
-chmod +x hound.sh
+chmod +x almight.sh
 ```
 
 ## 🛠️ Usage
@@ -66,7 +66,7 @@ chmod +x hound.sh
 1. **Run the tool:**
 
     ```bash
-    ./hound.sh
+    ./almight.sh
     ```
 
 2. **Select Tunnel:** Choose `Y` to use Cloudflared (recommended) for a public link.

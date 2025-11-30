@@ -123,7 +123,7 @@ php -S 127.0.0.1:8080 > /dev/null 2>&1 &
 sleep 2
 checkfound
 }
-hound() {
+almight() {
 if [[ -e data.txt ]]; then
 cat data.txt >> targetreport.txt
 rm -rf data.txt
@@ -147,4 +147,4 @@ fi
 
 banner
 dependencies
-hound
+almight
